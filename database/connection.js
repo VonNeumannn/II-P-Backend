@@ -5,7 +5,7 @@ Config for connect to database
 var dbSettings = {      
     user: 'sa',                    
     password: '1234',
-    server: 'localhost',
+    server: '25.43.228.152',
     database: 'II P',
     port:  1433,
     options: {

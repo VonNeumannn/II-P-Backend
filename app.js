@@ -17,11 +17,11 @@ app.use(express.json());
 /*
 Call functions
 */
-app.get('/byAmount', controller.filterByAmount)
-app.get('/byArticle', controller.filterByArticleType)
-app.get('/byName', controller.filterByName)
+app.post('/byAmount', controller.filterByAmount)
+app.post('/byArticle', controller.filterByArticleType)
+app.post('/byName', controller.filterByName)
 app.post('/insert', controller.insertArticle)
-app.get('/login', controller.login)
+app.post('/login', controller.login)
 app.use('/',router)
 /*
 Shut up server

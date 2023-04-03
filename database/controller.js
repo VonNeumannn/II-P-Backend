@@ -5,9 +5,9 @@ Function to call SP FilterByAmount
 const filterByAmount = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
-        .input('inAmount')
-        .input('inPostIdUser')
-        .input('inPostIp')             
+        .input('inAmount', req.body.inAmount)
+        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByAmount')
     res.json(result.recordset)
@@ -18,9 +18,9 @@ Function to call SP FilterByArticleType
 const filterByArticleType = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
-        .input('inName')
-        .input('inPostIdUser')
-        .input('inPostIp')             
+        .input('inName', req.body.inName)
+        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByArticleType')
     res.json(result.recordset)
@@ -31,9 +31,9 @@ Function to call SP FilterByName
 const filterByName = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
-        .input('inName')
-        .input('inPostIdUser')
-        .input('inPostIp')             
+        .input('inName', req.body.inName)
+        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByName')
     res.json(result.recordset)
@@ -46,9 +46,9 @@ const insertArticle = async(req, res) => {
     const result = await pool.request()
         .input('inName', req.body.inName)     
         .input('inPrice', req.body.inPrice)
-        .input('inType')
-        .input('inPostIdUser')
-        .input('inPostIp')               
+        .input('inType', req.body.inType)
+        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostIp', req.body.inPostIp)               
         .output('outResultCode', 0)
         .execute('InsertArticle');
         if (result.output.outResultCode == 50001) {
@@ -74,10 +74,10 @@ Function to call SP Login
 const login = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
-        .input('inUser')
-        .input('inPassword')
-        .input('inPostIdUser')
-        .input('inPostIp')             
+        .input('inUser', req.body.inUser)
+        .input('inPassword', req.body.inPassword)
+        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('LoginDB');
         if (result.output.outResultCode == 0){
