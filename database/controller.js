@@ -6,7 +6,7 @@ const filterByAmount = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
         .input('inAmount', req.body.inAmount)
-        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostUser', req.body.inPostUser)
         .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByAmount')
@@ -19,7 +19,7 @@ const filterByArticleType = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
         .input('inName', req.body.inName)
-        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostUser', req.body.inPostUser)
         .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByArticleType')
@@ -32,7 +32,7 @@ const filterByName = async(req, res) => {
     const pool = await conn.getConnection();
     const result = await pool.request()
         .input('inName', req.body.inName)
-        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostUser', req.body.inPostUser)
         .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('FilterByName')
@@ -47,7 +47,7 @@ const insertArticle = async(req, res) => {
         .input('inName', req.body.inName)     
         .input('inPrice', req.body.inPrice)
         .input('inType', req.body.inType)
-        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostUser', req.body.inPostUser)
         .input('inPostIp', req.body.inPostIp)               
         .output('outResultCode', 0)
         .execute('InsertArticle');
@@ -76,7 +76,7 @@ const login = async(req, res) => {
     const result = await pool.request()
         .input('inUser', req.body.inUser)
         .input('inPassword', req.body.inPassword)
-        .input('inPostIdUser', req.body.inPostIdUser)
+        .input('inPostUser', req.body.inPostUser)
         .input('inPostIp', req.body.inPostIp)             
         .output('outResultCode', 0)
         .execute('LoginDB');
@@ -92,8 +92,19 @@ const login = async(req, res) => {
             })
         }
 };
+/*
+Function to call SP GetArticleTypes
+*/
+const getArticleTypes = async(req, res) => {
+    const pool = await conn.getConnection();
+    const result = await pool.request()             
+        .output('outResultCode', 0)
+        .execute('GetArticleTypes')
+    res.json(result.recordset)
+};  
 exports.filterByAmount = filterByAmount;
 exports.filterByArticleType = filterByArticleType;
 exports.filterByName = filterByName;
 exports.insertArticle = insertArticle;
 exports.login = login;
+exports.getArticleTypes = getArticleTypes;

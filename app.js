@@ -22,6 +22,7 @@ app.post('/byArticle', controller.filterByArticleType)
 app.post('/byName', controller.filterByName)
 app.post('/insert', controller.insertArticle)
 app.post('/login', controller.login)
+app.get('/getTypes', controller.getArticleTypes)
 app.use('/',router)
 /*
 Shut up server
