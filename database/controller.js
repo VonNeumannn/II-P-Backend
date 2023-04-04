@@ -77,10 +77,11 @@ const login = async(req, res) => {
         .input('inUser', req.body.inUser)
         .input('inPassword', req.body.inPassword)
         .input('inPostUser', req.body.inPostUser)
-        .input('inPostIp', req.body.inPostIp)             
+        .input('inPostIp', req.body.inPostIp)
+        .output('outLoginSuccess', 0)             
         .output('outResultCode', 0)
         .execute('LoginDB');
-        if (result.output.outResultCode == 0){
+        if (result.output.outResultCode == 0 && result.output.outLoginSuccess == 0){
             res.json({
                 access: "Login Exitoso",
                 message: "Inicio de sesión exitoso"
